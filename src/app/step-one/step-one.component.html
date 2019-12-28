@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" formControlName="email" type="email">
+  </mat-form-field>
+  
+  <mat-checkbox formControlName="isStateAvailable">State is available</mat-checkbox>
+</form>

@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+  <div style="display:flex">
+      <div style="width:50%">
+  <mat-select placeholder="Children" formControlName="children">
+    <mat-option *ngFor="let number of [0,1,2,3,4]" [value]="number">
+      {{number}}
+    </mat-option>
+  </mat-select>
+  </div>
+<div style="width:50%">
+  <mat-form-field class="example-full-width" *ngFor="let childName of form.controls.childrenNames.controls">
+    <input matInput placeholder="Child Name" [formControl]="childName">
+  </mat-form-field>
+</div>
+</div>
+</form>
