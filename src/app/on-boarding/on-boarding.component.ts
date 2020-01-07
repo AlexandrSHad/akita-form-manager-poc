@@ -3,16 +3,22 @@ import { FormGroup } from '@angular/forms';
 import { Observable, combineLatest } from 'rxjs';
 import { AkitaNgFormsManager } from '@datorama/akita-ng-forms-manager';
 import { map, startWith } from 'rxjs/operators';
+import { OnBoardingStore,  } from '../state/on-boarding.store';
+import { OnBoardingQuery } from '../state/on-boarding.query';
+import { OnBoardingFormsState } from './on-boarding-forms.state';
 
 @Component({
   selector: 'app-on-boarding',
-  templateUrl: './on-boarding.component.html'
+  templateUrl: './on-boarding.component.html',
+  providers: [OnBoardingStore, OnBoardingQuery],
 })
 export class OnBoardingComponent implements OnInit {
   form: FormGroup;
   isFormValid$: Observable<boolean>;
 
-  constructor(private formsManager: AkitaNgFormsManager<any>) {}
+  constructor(
+    private formsManager: AkitaNgFormsManager<OnBoardingFormsState>
+  ) {}
 
   ngOnInit() {
     console.log('wizard init');

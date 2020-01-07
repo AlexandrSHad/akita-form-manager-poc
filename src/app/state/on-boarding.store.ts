@@ -2,12 +2,38 @@ import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 
 export interface OnBoardingState {
-   key: string;
+  stepOne: {
+    name: string;
+    email: string;
+    isStateAvailable: boolean;
+  };
+  stepTwo: {
+    street: string,
+    address: string,
+    state: string
+  };
+  stepThree: {
+    children: number,
+    childrenNames: string[]
+  }
 }
 
 export function createInitialState(): OnBoardingState {
   return {
-    key: ''
+    stepOne: {
+      name: 'name',
+      email: 'email',
+      isStateAvailable: false
+    },
+    stepTwo: {
+      street: 'street',
+      address: 'address',
+      state: ''
+    },
+    stepThree: {
+      children: 2,
+      childrenNames: ['ch1', 'ch2']
+    }
   };
 }
 
