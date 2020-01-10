@@ -42,6 +42,8 @@ import { HomeComponent } from './home/home.component';
 import { ValidStepDirective } from './valid-step.directive';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   declarations: [
@@ -88,7 +90,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatSortModule,
     ReactiveFormsModule,
-    AkitaNgDevtools.forRoot()
+    AkitaNgDevtools.forRoot(),
+    GridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

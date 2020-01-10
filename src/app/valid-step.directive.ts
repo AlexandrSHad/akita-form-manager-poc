@@ -16,7 +16,7 @@ export class ValidStepDirective {
     @Attribute('validStep') private step,
     private formsManager: AkitaNgFormsManager<any>,
     private host: ElementRef<HTMLElement>
-  ) {}
+  ) { }
 
   ngOnInit() {
     const step = `step${captiliaze(this.step)}`;
@@ -27,13 +27,14 @@ export class ValidStepDirective {
     combineLatest(isStepDirty$, isStepValid$)
       .pipe(untilDestroyed(this))
       .subscribe(([isDirty, isValid]) => {
-        if (isDirty) {
-          this.host.nativeElement.classList.toggle('invalid', !isValid);
+        this.host.nativeElement.classList.remove('invalid');
+        if (isDirty && !isValid) {
+          this.host.nativeElement.classList.add('invalid');
         }
       });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 }
 
 function captiliaze(string) {

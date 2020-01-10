@@ -11,16 +11,23 @@ import { PersistNgFormPlugin } from '@datorama/akita';
   templateUrl: './step-two.component.html'
 })
 export class StepTwoComponent implements OnInit {
+  data: any[];
   form: FormGroup;
-  private _pngfp: PersistNgFormPlugin;
+  private pngfp: PersistNgFormPlugin;
 
   constructor(
     private builder: FormBuilder,
     private formsManager: AkitaNgFormsManager<OnBoardingFormsState>,
-    private _query: OnBoardingQuery,
-  ) {}
+    private query: OnBoardingQuery,
+  ) { }
 
   ngOnInit() {
+    this.data = [
+      { name: 'name 1', count: 100 },
+      { name: 'name 2', count: 200 },
+      { name: 'name 3', count: 300 }
+    ];
+
     this.form = this.builder.group({
       street: ['', Validators.required],
       address: ['', Validators.required],
@@ -41,7 +48,7 @@ export class StepTwoComponent implements OnInit {
     //   }
     // });
 
-    this._query.select(onBoardingState => onBoardingState.stepOne.isStateAvailable)
+    this.query.select(onBoardingState => onBoardingState.stepOne.isStateAvailable)
       .subscribe(isStateAvailable => {
         if (isStateAvailable) {
           console.log('enable');
@@ -54,6 +61,6 @@ export class StepTwoComponent implements OnInit {
         }
       });
 
-    this._pngfp = new PersistNgFormPlugin( this._query, 'stepTwo').setForm( this.form );
+    this.pngfp = new PersistNgFormPlugin(this.query, 'stepTwo').setForm(this.form);
   }
 }
