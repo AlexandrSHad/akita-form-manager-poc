@@ -43,6 +43,7 @@ import { ValidStepDirective } from './valid-step.directive';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { GridDataComponent } from './step-two/grid/grid-data/grid-data.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
     StepTwoComponent,
     StepThreeComponent,
     HomeComponent,
-    ValidStepDirective
+    ValidStepDirective,
+    GridDataComponent
   ],
   imports: [
     BrowserModule,

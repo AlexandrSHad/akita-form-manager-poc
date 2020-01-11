@@ -11,7 +11,6 @@ import { PersistNgFormPlugin } from '@datorama/akita';
   templateUrl: './step-two.component.html'
 })
 export class StepTwoComponent implements OnInit {
-  data: any[];
   form: FormGroup;
   private pngfp: PersistNgFormPlugin;
 
@@ -22,16 +21,11 @@ export class StepTwoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.data = [
-      { name: 'name 1', count: 100 },
-      { name: 'name 2', count: 200 },
-      { name: 'name 3', count: 300 }
-    ];
-
     this.form = this.builder.group({
       street: ['', Validators.required],
       address: ['', Validators.required],
-      state: ['']
+      state: [''],
+      gridData: []
     });
 
     this.formsManager.upsert('stepTwo', this.form);

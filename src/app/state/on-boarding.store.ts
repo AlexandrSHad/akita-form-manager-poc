@@ -10,7 +10,8 @@ export interface OnBoardingState {
   stepTwo: {
     street: string,
     address: string,
-    state: string
+    state: string,
+    gridData: Array<{name: string, count: number}>
   };
   stepThree: {
     children: number,
@@ -28,7 +29,12 @@ export function createInitialState(): OnBoardingState {
     stepTwo: {
       street: 'street',
       address: 'address',
-      state: ''
+      state: '',
+      gridData: [
+        { name: 'name 1', count: 100 },
+        { name: 'name 2', count: 200 },
+        { name: 'name 3', count: 300 }
+      ]
     },
     stepThree: {
       children: 2,
