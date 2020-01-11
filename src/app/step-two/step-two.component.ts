@@ -5,6 +5,7 @@ import { AkitaNgFormsManager, setValidators } from '@datorama/akita-ng-forms-man
 import { OnBoardingFormsState } from '../on-boarding/on-boarding-forms.state';
 import { OnBoardingQuery } from '../state/on-boarding.query';
 import { PersistNgFormPlugin } from '@datorama/akita';
+import { OnBoardingStore } from '../state/on-boarding.store';
 
 @Component({
   selector: 'app-step-two',
@@ -17,6 +18,7 @@ export class StepTwoComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private formsManager: AkitaNgFormsManager<OnBoardingFormsState>,
+    private store: OnBoardingStore,
     private query: OnBoardingQuery,
   ) { }
 
@@ -56,5 +58,10 @@ export class StepTwoComponent implements OnInit {
       });
 
     this.pngfp = new PersistNgFormPlugin(this.query, 'stepTwo').setForm(this.form);
+  }
+
+  addNew() {
+    this.store.updateAddress('new address');
+    this.store.addNewGridData('new name', 222);
   }
 }

@@ -51,5 +51,31 @@ export class OnBoardingStore extends Store<OnBoardingState> {
     super(createInitialState());
   }
 
-}
+  updateAddress(address: string) {
+    this.update(state => {
+      return {
+        stepTwo: {
+          street: state.stepTwo.street,
+          address: address,
+          state: state.stepTwo.state,
+          gridData: state.stepTwo.gridData
+        }
+      }
+    });
+  }
 
+  addNewGridData(name: string, count: number = 0) {
+    this.update(state => {
+      return {
+        stepTwo: {
+          address: state.stepTwo.address,
+          state: state.stepTwo.state,
+          street: state.stepTwo.street,
+          gridData: [...state.stepTwo.gridData, { name, count }]
+        }
+      }
+    });
+    // com.ua.one.three.one thousand.fourteen.thirty.left.house.car.weathercock.storm
+    // back.microvawe oven.stop.start.thunder.fox.rabbit.table.head.phone.chest
+  }
+}
