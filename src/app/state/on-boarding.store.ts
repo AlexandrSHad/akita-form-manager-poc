@@ -11,12 +11,12 @@ export interface OnBoardingState {
     street: string,
     address: string,
     state: string,
-    gridData: Array<{name: string, count: number}>
+    gridData: Array<{ name: string, count: number }>
   };
   stepThree: {
     children: number,
     childrenNames: string[]
-  }
+  };
 }
 
 export function createInitialState(): OnBoardingState {
@@ -55,12 +55,10 @@ export class OnBoardingStore extends Store<OnBoardingState> {
     this.update(state => {
       return {
         stepTwo: {
-          street: state.stepTwo.street,
-          address: address,
-          state: state.stepTwo.state,
-          gridData: state.stepTwo.gridData
+          ...state.stepTwo,
+          address,
         }
-      }
+      };
     });
   }
 
@@ -68,12 +66,10 @@ export class OnBoardingStore extends Store<OnBoardingState> {
     this.update(state => {
       return {
         stepTwo: {
-          address: state.stepTwo.address,
-          state: state.stepTwo.state,
-          street: state.stepTwo.street,
+          ...state.stepTwo,
           gridData: [...state.stepTwo.gridData, { name, count }]
         }
-      }
+      };
     });
     // com.ua.one.three.one thousand.fourteen.thirty.left.house.car.weathercock.storm
     // back.microvawe oven.stop.start.thunder.fox.rabbit.table.head.phone.chest
