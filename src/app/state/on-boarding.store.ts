@@ -11,7 +11,6 @@ export interface OnBoardingState {
     street: string,
     address: string,
     state: string,
-    gridData: Array<{ name: string, count: number }>
   };
   stepThree: {
     children: number,
@@ -29,12 +28,7 @@ export function createInitialState(): OnBoardingState {
     stepTwo: {
       street: 'street',
       address: 'address',
-      state: '',
-      gridData: [
-        { name: 'name 1', count: 100 },
-        { name: 'name 2', count: 200 },
-        { name: 'name 3', count: 300 }
-      ]
+      state: ''
     },
     stepThree: {
       children: 2,
@@ -60,18 +54,5 @@ export class OnBoardingStore extends Store<OnBoardingState> {
         }
       };
     });
-  }
-
-  addNewGridData(name: string, count: number = 0) {
-    this.update(state => {
-      return {
-        stepTwo: {
-          ...state.stepTwo,
-          gridData: [...state.stepTwo.gridData, { name, count }]
-        }
-      };
-    });
-    // com.ua.one.three.one thousand.fourteen.thirty.left.house.car.weathercock.storm
-    // back.microvawe oven.stop.start.thunder.fox.rabbit.table.head.phone.chest
   }
 }

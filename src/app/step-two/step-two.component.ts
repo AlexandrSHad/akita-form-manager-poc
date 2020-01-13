@@ -6,6 +6,7 @@ import { OnBoardingFormsState } from '../on-boarding/on-boarding-forms.state';
 import { OnBoardingQuery } from '../state/on-boarding.query';
 import { PersistNgFormPlugin } from '@datorama/akita';
 import { OnBoardingStore } from '../state/on-boarding.store';
+import { GridDataItemsStore } from '../state/grid-data-items.store';
 
 @Component({
   selector: 'app-step-two',
@@ -20,14 +21,14 @@ export class StepTwoComponent implements OnInit {
     private formsManager: AkitaNgFormsManager<OnBoardingFormsState>,
     private store: OnBoardingStore,
     private query: OnBoardingQuery,
+    private gridDataItemsStore: GridDataItemsStore
   ) { }
 
   ngOnInit() {
     this.form = this.builder.group({
       street: ['', Validators.required],
       address: ['', Validators.required],
-      state: [''],
-      gridData: []
+      state: ['']
     });
 
     this.formsManager.upsert('stepTwo', this.form);
@@ -62,6 +63,7 @@ export class StepTwoComponent implements OnInit {
 
   addNew() {
     this.store.updateAddress('new address');
-    this.store.addNewGridData('new name', 222);
+    // this.store.addNewGridData('new name', 222);
+    this.gridDataItemsStore.add({ id: 3, name: 'new name', count: 222 });
   }
 }
