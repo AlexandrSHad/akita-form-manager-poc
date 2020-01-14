@@ -66,4 +66,11 @@ export class StepTwoComponent implements OnInit {
     // this.store.addNewGridData('new name', 222);
     this.gridDataItemsStore.add({ id: 3, name: 'new name', count: 222 });
   }
+
+  updateExisting() {
+    this.gridDataItemsStore.update(2, entity => {
+      const newCount = entity.count + 1;
+      return { name: `updated name ${newCount}`, count: newCount };
+    });
+  }
 }

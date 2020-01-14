@@ -46,6 +46,7 @@ export class OnBoardingStore extends Store<OnBoardingState> {
   }
 
   updateAddress(address: string) {
+    // this.update({ address });
     this.update(state => {
       return {
         stepTwo: {
