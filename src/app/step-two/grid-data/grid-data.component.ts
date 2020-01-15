@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { GridDataItemsStore, GridDataItemsState } from 'src/app/state/grid-data-items.store';
-import { GridDataItemsQuery } from 'src/app/state/grid-data-items.query';
 import { Observable } from 'rxjs';
 import { GridDataItem } from 'src/app/state/grid-data-item.model';
+import { OnBoardingQuery } from 'src/app/state/on-boarding.query';
 
 @Component({
   selector: 'app-grid-data',
@@ -22,10 +21,10 @@ import { GridDataItem } from 'src/app/state/grid-data-item.model';
 export class GridDataComponent implements OnInit, ControlValueAccessor {
   data: Array<{ name: string, count: number }> = [];
   data$: Observable<GridDataItem[]>;
-  onChangeFn: Function;
+  onChangeFn: () => void;
 
-  constructor(private gridDataItemsStore: GridDataItemsStore, private gridDataItemsQuery: GridDataItemsQuery) {
-    this.data$ = this.gridDataItemsQuery.selectAll();
+  constructor(private query: OnBoardingQuery) {
+    this.data$ = this.query.allGridDataItems$;
   }
 
   writeValue(data: any): void {

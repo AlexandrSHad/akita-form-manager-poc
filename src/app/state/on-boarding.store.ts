@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Store, StoreConfig } from '@datorama/akita';
+import { Store, StoreConfig, arrayAdd, arrayUpdate } from '@datorama/akita';
+import { GridDataItem } from './grid-data-item.model';
 
 export interface OnBoardingState {
   stepOne: {
@@ -11,6 +12,7 @@ export interface OnBoardingState {
     street: string,
     address: string,
     state: string,
+    gridData: GridDataItem[]
   };
   stepThree: {
     children: number,
@@ -28,7 +30,11 @@ export function createInitialState(): OnBoardingState {
     stepTwo: {
       street: 'street',
       address: 'address',
-      state: ''
+      state: '',
+      gridData: [
+        { id: 1, name: 'name 2.1', count: 210 },
+        { id: 2, name: 'name 3.1', count: 310 }
+      ]
     },
     stepThree: {
       children: 2,
@@ -55,5 +61,23 @@ export class OnBoardingStore extends Store<OnBoardingState> {
         }
       };
     });
+  }
+
+  addGridDataItem(gridItem: GridDataItem) {
+    this.update(state => ({
+      stepTwo: {
+        ...state.stepTwo,
+        gridData: arrayAdd(state.stepTwo.gridData, gridItem)
+      }
+    }));
+  }
+
+  updateGridDataItem(id: number, gridItem: Partial<GridDataItem>) {
+    this.update(state => ({
+      stepTwo: {
+        ...state.stepTwo,
+        gridData: arrayUpdate(state.stepTwo.gridData, id, gridItem)
+      }
+    }));
   }
 }

@@ -6,7 +6,6 @@ import { OnBoardingFormsState } from '../on-boarding/on-boarding-forms.state';
 import { OnBoardingQuery } from '../state/on-boarding.query';
 import { PersistNgFormPlugin } from '@datorama/akita';
 import { OnBoardingStore } from '../state/on-boarding.store';
-import { GridDataItemsStore } from '../state/grid-data-items.store';
 
 @Component({
   selector: 'app-step-two',
@@ -20,8 +19,7 @@ export class StepTwoComponent implements OnInit {
     private builder: FormBuilder,
     private formsManager: AkitaNgFormsManager<OnBoardingFormsState>,
     private store: OnBoardingStore,
-    private query: OnBoardingQuery,
-    private gridDataItemsStore: GridDataItemsStore
+    private query: OnBoardingQuery
   ) { }
 
   ngOnInit() {
@@ -63,14 +61,14 @@ export class StepTwoComponent implements OnInit {
 
   addNew() {
     this.store.updateAddress('new address');
-    // this.store.addNewGridData('new name', 222);
-    this.gridDataItemsStore.add({ id: 3, name: 'new name', count: 222 });
+    this.store.addGridDataItem({ id: 3, name: 'new name', count: 222 });
   }
 
   updateExisting() {
-    this.gridDataItemsStore.update(2, entity => {
-      const newCount = entity.count + 1;
-      return { name: `updated name ${newCount}`, count: newCount };
-    });
+    // this.store.update(2, entity => {
+    //   const newCount = entity.count + 1;
+    //   return { name: `updated name ${newCount}`, count: newCount };
+    // });
+    this.store.updateGridDataItem(3, { name: 'updated name', count: 1000 });
   }
 }
